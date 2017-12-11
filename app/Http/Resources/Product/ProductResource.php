@@ -22,7 +22,9 @@ class ProductResource extends Resource
             'discount' => $this->discount . ' %',
             'totalPrice' => round((1 - ($this->discount/100)) * $this->price, 2),
             'rating' => $this->reviews->count() > 0 ? round($this->reviews->sum('star')/$this->reviews->count(),2) : 'No Ratings found',
-            'href' => route('reviews.index', $this->id)
+            'href' => [
+                'link' => route('reviews.index', $this->id)
+            ]
         ];
     }
 }
